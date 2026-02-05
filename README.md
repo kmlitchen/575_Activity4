@@ -1,2 +1,2 @@
-# Demo Repo for Activity 1
-This repo pulls code for the demo for activity 1 for GEOG 575
+# GEOG 575 Activity 3 Repo - 
+This repo copied code from the demo for activity 1 and edited for activity 3
