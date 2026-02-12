@@ -1,4 +1,4 @@
-// GEOG575 Activity 3 - Katie Litchen 05Feb2026
+// GEOG575 Activity 4 - Katie Litchen 12Feb2026
 
 // added the new debugged fxs to the initialization fx copied from lesson example 3.4 code
 //initialize function called when the script loads
@@ -49,11 +49,11 @@ function cities(){
 }
 document.addEventListener('DOMContentLoaded',initialize)
 
-// beginning of debugged code:
+// activity 3 -- beginning of debugged code:
 
 // debugged fx to add the city size column to the table:
 function addColumns(table){
-	// probably redundant, but og code redefined the cities and populations - used variable in new fx
+	// redefined cities and populations - variable used in new fx
 	var cityPop = [
     { 
         city: 'Madison',
@@ -100,7 +100,6 @@ function addColumns(table){
 function addEvents(){
 	//debugged event fx to change color of the table each time user mouses-over the element:
 	document.querySelector("table").addEventListener("mouseover", function(){
-		// not sure if this was how the assignment "meant" to fix this fx, but...
 		// updated variable name, set as an empty array for RGB color elements
 		var misccolor = [];
 			// loop through empty array + add random whole # up to 255 to end (3x)
@@ -108,7 +107,7 @@ function addEvents(){
 			var misc = Math.round(Math.random() * 255);
 			misccolor.push(misc);
 			};
-		// set the color of the table to the rgb value from color array // idk if there was an easier way to do that?
+		// set the color of the table to the rgb value from color array
 		document.querySelector("table").style.color = `rgb(${misccolor[0]}, ${misccolor[1]}, ${misccolor[2]})`;
 	});
 	// fx for pop-up alert text:
@@ -117,4 +116,24 @@ function addEvents(){
 	};
 	// calls the alert fx upon clicking the table
 	document.querySelector("table").addEventListener("click", clickme)
+};
+
+// activity 4 -- beginning of debugged code:
+
+//run ajax fx upon load
+window.onload = debugAjax();
+
+function debugAjax(){
+	// fetch data - 
+	fetch("data/MegaCities.geojson") // retreive
+		.then(function(response){   
+            return response.json();  // convert
+        })
+		.then(debugCallback)        // callback
+};
+
+// callback fx using the response - now defines variable and only prints string to display within this fx
+function debugCallback(response){
+	var myData = response
+	document.querySelector("#mydiv").insertAdjacentHTML('beforeend', 'GeoJSON data: ' + JSON.stringify(myData))
 };
